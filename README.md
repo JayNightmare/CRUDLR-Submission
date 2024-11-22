@@ -6,7 +6,7 @@
     <h1>Kingston University</h1>
     <h3>React Native App Development</h3>
     <p>This is a repo for my activity in the React Native App Development course at Kingston University.</p>
-Install For React Native App Development: 
+Install For React Native App Development:
 
 `npx create-expo-app@latest`
 
