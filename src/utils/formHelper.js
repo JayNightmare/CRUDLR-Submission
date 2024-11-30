@@ -1,1 +1,1 @@
-export const defaultImageURL = 'https://via.placeholder.com/150x150';
+const defaultImageURL = 'https://via.placeholder.com/150x150';

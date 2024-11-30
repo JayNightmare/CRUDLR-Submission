@@ -42,12 +42,12 @@ const ModuleListScreen = () => {
         const result = await API.put(putEndpoint, module);
         if (result.isSuccess) {
             loadModules(modulesEndpoint);
-            navigation.navigate('ModuleViewScreen');
+            navigation.goBack();
+            navigation.goBack();
         } else { Alert.alert(result.message); }
     }
 
     const gotoViewScreen = (module) => navigation.navigate('ModuleViewScreen', { module, onDelete, onModify });
-
     const gotoAddScreen = () => { navigation.navigate('ModuleAddScreen', { onAdd }); };
 
     return (

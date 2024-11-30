@@ -40,7 +40,8 @@ const UserListScreen = () => {
         const result = await API.put(putEndpoint, user);
         if (result.isSuccess) {
             loadUsers(usersEndpoint);
-            navigation.navigate('UserViewScreen');
+            navigation.goBack();
+            navigation.goBack();
         } else { Alert.alert(result.message); }
     }
 

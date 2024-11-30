@@ -12,12 +12,12 @@ const ModuleForm = ({ ogModule, onSubmit, onCancel }) => {
 
     const handleChange = (field, value) => setModule({ ...module, [field]: value });
     const handleSubmit = () => {
-        if (typeof onSubmit === 'function') { onSubmit(module); }
+        if (typeof onSubmit === 'function') { console.log(module); onSubmit(module); }
         else { console.error('onSubmit is not a function:', onSubmit); }
     };
 
     const submitLabel = ogModule ? 'Update Module' : 'Add Module';
-    const submitIcon = ogModule ? <Icons.Edit size={15}/> : <Icons.Add size={15}/>;
+    const submitIcon = ogModule ? <Icons.Edit size={15} /> : <Icons.Add size={15} />;
 
     const cohorts = years.map((year) => ({ value: year.YearID, label: year.YearName }));
     const staff = leaders.map((leader) => ({ value: leader.UserID, label: `${leader.UserFirstname} ${leader.UserLastname}` }));
