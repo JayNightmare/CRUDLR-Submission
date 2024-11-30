@@ -14,7 +14,7 @@ const Form = ({ children, onSubmit, onCancel, submitLabel, submitIcon }) => {
             {/* Buttons for Saving and Canceling */}
             <ButtonTray style={styles.buttonContainer}>
                 <Button label={submitLabel} icon={submitIcon} title="Save Changes" onPress={onSubmit} color="black" />
-                <Button label="Cancel" icon={<Icons.Close/>} title="Cancel" onPress={onCancel} color="gray" />
+                <Button label="Cancel" icon={<Icons.Close/>} title="Cancel" onPress={onCancel} color="gray" styleLabel={{ color: 'red' }} styleButton={{ borderColor: 'red' }} />
             </ButtonTray>
         </KeyboardAvoidingView>
     );

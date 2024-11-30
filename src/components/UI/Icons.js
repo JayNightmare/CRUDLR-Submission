@@ -6,8 +6,8 @@ const Icons = {};
 
 const Add = ({ size }) => <Ionicons name="add" size={size}  />;
 const Edit = ({ size }) => <Feather name="edit-2" size={size} />;
-const Delete = () => <Ionicons name="trash" size={20} color='red'  />;
-const Close = () => <Ionicons name="close" size={20} />;
+const Delete = () => <Ionicons name="trash" size={20} color='red' />;
+const Close = () => <Ionicons name="close" size={20} color='red' />;
 const Loading = () => <Ionicons name="loading" size={20} />
 const Tick = ({ size }) => <Ionicons name="checkmark-circle" size={size}></Ionicons>
 

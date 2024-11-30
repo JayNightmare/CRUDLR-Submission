@@ -8,7 +8,7 @@ const UserView = ({ user, placeHolderText, onModify, onDelete }) => {
     const requestDelete = () => {
         Alert.alert(
             'Delete User',
-            `Are you sure you want to delete this\n${user.UserCode}: ${user.UserName}?`,
+            `Are you sure you want to delete this\n${user.UserID}: ${user.UserName}?`,
             [
                 { text: 'Cancel', style: 'cancel' },
                 { text: 'Delete', onPress: () => handleDelete(), color: 'red' },

@@ -6,6 +6,8 @@ import UserView from '../../entity/users/UserView';
 const UserViewScreen = ({ route, navigation }) => {
     const { user, onDelete, onModify } = route.params;
 
+    console.log(user);
+
     const placeHolderText = `
 Lorem ipsum odor amet, consectetuer adipiscing elit. Mollis euismod rutrum sodales maximus donec sit imperdiet. Dignissim eleifend suscipit odio, phasellus aenean felis. Eu phasellus class consequat sit curae mus mollis. Faucibus turpis vestibulum aenean nec nullam, facilisis pharetra est. Ad senectus quam sem et purus enim, suspendisse a condimentum.
 
@@ -25,7 +27,7 @@ Amet sit ridiculus sociosqu nibh, mollis et porttitor. Cursus quam eu mollis arc
         <Screen>
             <StatusBar barStyle="light-content" />
             <UserView
-                key={user.UserCode}
+                key={user.UserID}
                 user={user}
                 onDelete={onDelete}
                 onModify={gotoModifyScreen}

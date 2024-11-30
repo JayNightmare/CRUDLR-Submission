@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import Selector from "../../UI/Selector";
 
 const ModuleItem = ({ module, onSelect }) => {
@@ -14,7 +14,7 @@ const ModuleItem = ({ module, onSelect }) => {
                 </Selector>
             </View>
         </View>
-    ); 
+    );
 };
 
 const styles = StyleSheet.create({
@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 12,
         
-        backgroundColor: "#e8e8e8", 
+        backgroundColor: "#e8e8e8",
 
-        elevation: 2, 
+        elevation: 2,
         shadowColor: "#000000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,
