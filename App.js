@@ -107,16 +107,31 @@ export const App = () => {
                         headerTintColor: "black",
                         headerTitleStyle: { fontWeight: "bold" },
                         headerTitleAlign: "center",
+                        drawerStyle: {
+                            backgroundColor: "#f2f2f2", // Set the background color of the drawer
+                            width: 250, // Set the width of the drawer
+                        },
+                        drawerLabelStyle: {
+                            fontSize: 16, // Change font size of the labels
+                            fontWeight: "bold", // Make labels bold
+                        },
+                        drawerActiveBackgroundColor: "#e1d8f7", // Background color for active item
+                        drawerActiveTintColor: "#000", // Text color for active item
+                        drawerInactiveTintColor: "#7d7d7d", // Text color for inactive items
+                        drawerItemStyle: {
+                            borderRadius: 10, // Rounded corners for items
+                            marginVertical: 5, // Spacing between items
+                        },
                     }}
                 >
                     <Drawer.Screen
                         name="ModuleStack"
-                        component={ModuleStack}
+                        component={ ModuleStack }
                         options={{ title: "Modules" }}
                     />
                     <Drawer.Screen
                         name="UsersStack"
-                        component={UsersStack}
+                        component={ UsersStack }
                         options={{ title: "Users" }}
                     />
                 </Drawer.Navigator>
