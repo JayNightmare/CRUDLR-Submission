@@ -61,12 +61,16 @@ const UsersStack = () => {
             <Stack.Navigator
                 initialRouteName="UserListScreen"
                 screenOptions={{
-                    headerStyle: { backgroundColor: "#e1d8f7" },
+                    headerStyle: {
+                        backgroundColor: "#e1d8f7",
+                        textshadow: "#000000"
+                    },
                     headerTintColor: "black",
                     headerTitleStyle: { fontWeight: "bold" },
                     headerTitleAlign: "center",
                 }}
             >
+
                 <Stack.Screen
                     name="UserListScreen"
                     component={UserListScreen}
