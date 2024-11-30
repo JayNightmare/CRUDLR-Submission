@@ -13,6 +13,11 @@ export const register = [
     { value: 0, label: 'False' }
 ];
 
+export const type = [
+    { value: "Student", label: 'Student' },
+    { value: "Staff", label: 'Staff' }
+]
+
 export const defaultModule = {
     ModuleID: null,
     ModuleCode: null,
