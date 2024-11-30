@@ -20,6 +20,7 @@ Amet sit ridiculus sociosqu nibh, mollis et porttitor. Cursus quam eu mollis arc
 
     const gotoModifyScreen = () => navigation.navigate('UserModifyScreen', { user, onModify });
 
+
     return (
         <Screen>
             <StatusBar barStyle="light-content" />
@@ -28,7 +29,8 @@ Amet sit ridiculus sociosqu nibh, mollis et porttitor. Cursus quam eu mollis arc
                 user={user}
                 onDelete={onDelete}
                 onModify={gotoModifyScreen}
-                placeHolderText={placeHolderText}>
+                placeHolderText={placeHolderText}
+                >
             </UserView>
         </Screen>
     )

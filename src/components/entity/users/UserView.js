@@ -1,4 +1,4 @@
-import { StyleSheet, Text, ScrollView, Image, Alert } from "react-native";
+import { StyleSheet, Text, ScrollView, Image, Alert, View } from "react-native";
 import { Button, ButtonTray } from "../../UI/Button.js";
 import Icons from "../../UI/Icons.js";
 
@@ -19,11 +19,18 @@ const UserView = ({ user, placeHolderText, onModify, onDelete }) => {
 
     return (
         <ScrollView style={styles.container}>
-            <Text style={styles.title}>{user.UserFirstname} {user.UserLastname}</Text>
+            <View style={styles.nameContainer}>
+                <Text style={styles.title}>
+                    {user.UserFirstname} {user.UserLastname} {user.UserRegistered ? (
+                    <Icons.Tick size={20} color="green" style={styles.checkIcon} />
+                ) : null}
+                </Text>
+            </View>
             <Text style={styles.subtitle}> {user.UserEmail}</Text>
             <Image style={styles.image} source={{ uri: user.UserImageURL }} />
             <Text style={styles.detail}>Level: {user.UserLevel}</Text>
             <Text style={styles.detail}>Cohort: {user.UserYearName}</Text>
+            <Text style={styles.detail}>Type: {user.UserUsertypeName}</Text>
 
             <ButtonTray>
                 <Button onPress={onModify} icon={<Icons.Edit size={20}/>} label='Modify' />
@@ -40,6 +47,10 @@ const styles = StyleSheet.create({
         padding: 20,
         backgroundColor: '#fff',
         borderRadius: 10,
+    },
+    nameContainer: {
+        flex: 1,
+        alignContent: 'center',
     },
     title: {
         fontSize: 24,

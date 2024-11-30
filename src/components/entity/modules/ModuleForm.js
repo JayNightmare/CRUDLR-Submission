@@ -28,14 +28,6 @@ const ModuleForm = ({ ogModule, onSubmit, onCancel }) => {
         { value: 7, label: '7 (Masters)' },
     ];
 
-    // const cohorts = [
-    //     { value: 1, label: 'Local 2022/2023' },
-    //     { value: 2, label: 'Local 2023/2024' },
-    //     { value: 3, label: 'Local 2024/2025' },
-    //     { value: 4, label: 'Local 2025/2026' },
-    //     { value: 5, label: 'Local 2026/2027' },
-    // ];
-
     const [module, setModule] = useState(ogModule || defaultModule);
     const [years, , isYearsLoading] = useLoad(yearsEndpoint);
     const [leaders, , isLeadersLoading] = useLoad(staffEndpoint);

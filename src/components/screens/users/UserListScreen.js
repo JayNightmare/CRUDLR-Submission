@@ -11,7 +11,6 @@ import useLoad from "../../API/useLoad.js";
 const UserListScreen = () => {
     LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
 
-    // const usersEndpoint = 'https://softwarehub.uk/unibase/api/users';
     const usersEndpoint = 'https://softwarehub.uk/unibase/api/users';
 
     const navigation = useNavigation();
@@ -56,12 +55,6 @@ const UserListScreen = () => {
             <ButtonTray>
                 <Button styleButton={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderWidth: 0 }} icon={<Icons.Add size={20}/>} label="Add" onPress={gotoAddScreen} />
             </ButtonTray>
-            {isLoading && (
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>Loading Information...</Text>
-                    <ActivityIndicator size='64' color="#0000ff" />
-                </View>
-            )}
             <UserList users={users} onSelect={gotoViewScreen} isLoading={isLoading} />
         </Screen>
     );

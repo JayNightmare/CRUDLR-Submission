@@ -92,7 +92,7 @@ const UsersStack = () => {
     );
 };
 
-export const App = () => {``
+export const App = () => {
     return (
         <>
             <StatusBar backgroundColor="black" barStyle="light-content" />

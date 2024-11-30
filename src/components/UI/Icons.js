@@ -9,11 +9,13 @@ const Edit = ({ size }) => <Feather name="edit-2" size={size} />;
 const Delete = () => <Ionicons name="trash" size={20} color='red'  />;
 const Close = () => <Ionicons name="close" size={20} />;
 const Loading = () => <Ionicons name="loading" size={20} />
+const Tick = ({ size }) => <Ionicons name="checkmark-circle" size={size}></Ionicons>
 
 Icons.Add = Add;
 Icons.Delete = Delete;
 Icons.Edit = Edit;
 Icons.Close = Close;
 Icons.Loading = Loading;
+Icons.Tick = Tick;
 
 export default Icons;
