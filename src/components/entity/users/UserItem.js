@@ -1,14 +1,14 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
- 
-const ModuleItem = ({ module, onSelect }) => {
+
+const UserItem = ({ user, onSelect }) => {
     return (
         <View style={styles.cardContainer}>
             {/* Main row container */}
             <View style={styles.row}>
-                {/* Pressable for selecting the module */}
-                <TouchableOpacity onPress={() => onSelect(module)} style={styles.textContainer}>
-                    <Text style={styles.moduleNameText}>
-                        <Text style={{ fontWeight: "bold" }}>{module.ModuleCode}</Text> | {module.ModuleName}
+                {/* Pressable for selecting the user */}
+                <TouchableOpacity onPress={() => onSelect(user)} style={styles.textContainer}>
+                    <Text style={styles.userNameText}>
+                        <Text style={{ fontWeight: "bold" }}>{user.UserID}</Text> | {user.UserFirstname} {user.UserLastname}
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         flex: 1, 
     },
 
-    moduleNameText: {
+    userNameText: {
         fontSize: 18,
         color: "#333", 
     },
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ModuleItem;
+export default UserItem;

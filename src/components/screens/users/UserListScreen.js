@@ -3,7 +3,7 @@ import { StatusBar, LogBox, ActivityIndicator, View, Text, Alert } from "react-n
 import { useNavigation } from "@react-navigation/native";
 import API from "../../API/API.js";
 import Screen from "../../layout/Screen.js"; 
-import UserList from "../../entity/user/UserList.js";
+import UserList from "../../entity/users/UserList.js";
 import { ButtonTray, Button  } from "../../UI/Button.js";
 import Icons from "../../UI/Icons.js";
 import useLoad from "../../API/useLoad.js";

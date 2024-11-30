@@ -1,52 +1,117 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { StatusBar } from "react-native";
 
-import ModuleListScreen from "./src/components/screens/ModuleListScreen";
-import ModuleAddScreen from "./src/components/screens/ModuleAddScreen";
-import ModuleModifyScreen from "./src/components/screens/ModuleModifyScreen";
-import ModuleViewScreen from "./src/components/screens/ModuleViewScreen";
+import ModuleListScreen from "./src/components/screens/modules/ModuleListScreen";
+import ModuleAddScreen from "./src/components/screens/modules/ModuleAddScreen";
+import ModuleModifyScreen from "./src/components/screens/modules/ModuleModifyScreen";
+import ModuleViewScreen from "./src/components/screens/modules/ModuleViewScreen";
+
+import UserListScreen from "./src/components/screens/users/UserListScreen";
+import UserAddScreen from "./src/components/screens/users/UserAddScreen";
+import UserModifyScreen from "./src/components/screens/users/UserModifyScreen";
+import UserViewScreen from "./src/components/screens/users/UserViewScreen";
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
-export const App = () => {
+const ModuleStack = () => {
+    return (
+        <>
+            <StatusBar backgroundColor="black" barStyle="light-content" />
+            <Stack.Navigator
+                initialRouteName="ModuleListScreen"
+                screenOptions={{
+                    headerStyle: { backgroundColor: "#e1d8f7" },
+                    headerTintColor: "black",
+                    headerTitleStyle: { fontWeight: "bold" },
+                    headerTitleAlign: "center",
+                }}
+            >
+                <Stack.Screen
+                    name="ModuleListScreen"
+                    component={ModuleListScreen}
+                    options={{ title: "Module List" }}
+                />
+                <Stack.Screen
+                    name="ModuleAddScreen"
+                    component={ModuleAddScreen}
+                    options={{ title: "Add Module" }}
+                />
+                <Stack.Screen
+                    name="ModuleModifyScreen"
+                    component={ModuleModifyScreen}
+                    options={{ title: "Modify Module" }}
+                />
+                <Stack.Screen
+                    name="ModuleViewScreen"
+                    component={ModuleViewScreen}
+                    options={{ title: "View Module" }}
+                />
+            </Stack.Navigator>
+        </>
+    );
+};
+
+const UsersStack = () => {
+    return (
+        <>
+            <StatusBar backgroundColor="black" barStyle="light-content" />
+            <Stack.Navigator
+                initialRouteName="UserListScreen"
+                screenOptions={{
+                    headerStyle: { backgroundColor: "#e1d8f7" },
+                    headerTintColor: "black",
+                    headerTitleStyle: { fontWeight: "bold" },
+                    headerTitleAlign: "center",
+                }}
+            >
+                <Stack.Screen
+                    name="UserListScreen"
+                    component={UserListScreen}
+                    options={{ title: "User List" }}
+                />
+                <Stack.Screen
+                    name="UserAddScreen"
+                    component={UserAddScreen}
+                    options={{ title: "Add User" }}
+                />
+                <Stack.Screen
+                    name="UserModifyScreen"
+                    component={UserModifyScreen}
+                    options={{ title: "Modify User" }}
+                />
+                <Stack.Screen
+                    name="UserViewScreen"
+                    component={UserViewScreen}
+                    options={{ title: "View User" }}
+                />
+            </Stack.Navigator>
+       </>
+    );
+};
+
+export const App = () => {``
     return (
         <>
             <StatusBar backgroundColor="black" barStyle="light-content" />
             <NavigationContainer>
-                <Stack.Navigator
-                    initialRouteName="ModuleListScreen"
-                    screenOptions={{
-                        headerStyle: { backgroundColor: "#e1d8f7" },
-                        headerTintColor: "black",
-                        headerTitleStyle: { fontWeight: "bold" },
-                        headerTitleAlign: "center",
-                    }}
-                >
-                    <Stack.Screen
-                        name="ModuleListScreen"
-                        component={ModuleListScreen}
-                        options={{ title: "Module List" }}
+                <Drawer.Navigator>
+                    <Drawer.Screen
+                        name="ModuleStack"
+                        component={ModuleStack}
+                        options={{ title: "Modules" }}
                     />
-                    <Stack.Screen
-                        name="ModuleAddScreen"
-                        component={ModuleAddScreen}
-                        options={{ title: "Add Module" }}
+                    <Drawer.Screen
+                        name="UsersStack"
+                        component={UsersStack}
+                        options={{ title: "Users" }}
                     />
-                    <Stack.Screen
-                        name="ModuleModifyScreen"
-                        component={ModuleModifyScreen}
-                        options={{ title: "Modify Module" }}
-                    />
-                    <Stack.Screen
-                        name="ModuleViewScreen"
-                        component={ModuleViewScreen}
-                        options={{ title: "View Module" }}
-                    />
-                </Stack.Navigator>
+                </Drawer.Navigator>
             </NavigationContainer>
         </>
-    );
-};
+    )
+}
 
 export default App;

@@ -1,13 +1,13 @@
 import { StyleSheet, ScrollView, ActivityIndicator } from "react-native";
-import ModuleItem from "./ModuleItem.js";
+import UserItem from "./UserItem.js";
 
 
-const ModuleList = ({ modules, onSelect, isLoading }) => {
+const UserList = ({ users, onSelect, isLoading }) => {
     return (
         <ScrollView style={styles.container}>
             { isLoading ? <ActivityIndicator size="large" color="#000" /> : null }
-            { modules.map((module) => {
-                return <ModuleItem key={module.ModuleCode} module={module} onSelect={onSelect}/>
+            { users.map((user) => {
+                return <UserItem key={user.UserID} user={user} onSelect={onSelect}/>
             })}
         </ScrollView>
     );
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ModuleList;
+export default UserList;

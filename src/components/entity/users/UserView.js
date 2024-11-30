@@ -2,13 +2,13 @@ import { StyleSheet, Text, ScrollView, Image, Alert } from "react-native";
 import { Button, ButtonTray } from "../../UI/Button.js";
 import Icons from "../../UI/Icons.js";
 
-const ModuleView = ({ module, placeHolderText, onModify, onDelete }) => {
-    const handleDelete = () => onDelete(module);
+const UserView = ({ user, placeHolderText, onModify, onDelete }) => {
+    const handleDelete = () => onDelete(user);
 
     const requestDelete = () => {
         Alert.alert(
-            'Delete Module',
-            `Are you sure you want to delete this\n${module.ModuleCode}: ${module.ModuleName}?`,
+            'Delete User',
+            `Are you sure you want to delete this\n${user.UserCode}: ${user.UserName}?`,
             [
                 { text: 'Cancel', style: 'cancel' },
                 { text: 'Delete', onPress: () => handleDelete(), color: 'red' },
@@ -19,12 +19,11 @@ const ModuleView = ({ module, placeHolderText, onModify, onDelete }) => {
 
     return (
         <ScrollView style={styles.container}>
-            <Text style={styles.title}>{module.ModuleCode}</Text>
-            <Text style={styles.subtitle}> {module.ModuleName}</Text>
-            <Image style={styles.image} source={{ uri: module.ModuleImageURL }} />
-            <Text style={styles.detail}>Level: {module.ModuleLevel}</Text>
-            <Text style={styles.detail}>Cohort: {module.ModuleYearName}</Text>
-            <Text style={styles.detail}>Module Leader: {module.ModuleLeaderName}</Text>
+            <Text style={styles.title}>{user.UserFirstname} {user.UserLastname}</Text>
+            <Text style={styles.subtitle}> {user.UserEmail}</Text>
+            <Image style={styles.image} source={{ uri: user.UserImageURL }} />
+            <Text style={styles.detail}>Level: {user.UserLevel}</Text>
+            <Text style={styles.detail}>Cohort: {user.UserYearName}</Text>
 
             <ButtonTray>
                 <Button onPress={onModify} icon={<Icons.Edit size={20}/>} label='Modify' />
@@ -50,11 +49,11 @@ const styles = StyleSheet.create({
         color: 'black'
     },
     subtitle: {
-        fontSize: 24,
+        fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 20,
         textAlign: 'center',
-        color: 'black'
+        color: '#a2a2a2'
     },
     image: {
         width: '100%',
@@ -108,4 +107,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ModuleView;
+export default UserView;
