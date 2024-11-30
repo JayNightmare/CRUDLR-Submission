@@ -1,6 +1,6 @@
 import { StatusBar } from 'react-native';
-import Screen from '../layout/Screen';
-import ModuleForm from '../entity/modules/ModuleForm';
+import Screen from '../../layout/Screen';
+import ModuleForm from '../../entity/modules/ModuleForm';
 
 
 const ModuleModifyScreen = ({ route, navigation }) => {

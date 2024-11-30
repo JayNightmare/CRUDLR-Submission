@@ -1,12 +1,12 @@
 import React from "react";
 import { StatusBar, LogBox, ActivityIndicator, View, Text, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import API from "../API/API.js";
-import Screen from "../layout/Screen"; 
-import ModuleList from "../entity/modules/ModuleList.js";
-import { ButtonTray, Button  } from "../UI/Button.js";
-import Icons from "../UI/Icons.js";
-import useLoad from "../API/useLoad.js";
+import API from "../../API/API.js";
+import Screen from "../../layout/Screen.js"; 
+import ModuleList from "../../entity/modules/ModuleList.js";
+import { ButtonTray, Button  } from "../../UI/Button.js";
+import Icons from "../../UI/Icons.js";
+import useLoad from "../../API/useLoad.js";
 
 const ModuleListScreen = () => {
     LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);

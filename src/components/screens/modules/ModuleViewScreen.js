@@ -1,7 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-import Screen from '../layout/Screen';
-import ModuleView from '../entity/modules/ModuleView';
+import Screen from '../../layout/Screen';
+import ModuleView from '../../entity/modules/ModuleView';
 
 const ModuleViewScreen = ({ route, navigation }) => {
     const { module, onDelete, onModify } = route.params;
