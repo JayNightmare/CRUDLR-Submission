@@ -31,16 +31,43 @@ const UserForm = ({ ogModule: ogUser, onSubmit, onCancel }) => {
         { value: 7, label: '7 (Masters)' },
     ];
 
+    const register = [
+        { value: 1, label: 'True' },
+        { value: 0, label: 'False' }
+    ];
+
     const [user, setUser] = useState(ogUser || defaultUser);
     const [years, isYearsLoading] = useLoad(yearsEndpoint);
 
-    const handleChange = (field, value) => setUser({ ...user, [field]: value });
+    const handleChange = (field, value) => {
+        if (field === 'UserName') {
+            const { UserFirstname, UserLastname } = splitFullName(value);
+            setUser({ ...user, UserFirstname, UserLastname, UserName: value });
+        } else {
+            setUser({ ...user, [field]: value });
+        }
+    };
+    const splitFullName = (fullName) => {
+        const nameParts = fullName.trim().split(' ');
+        const firstName = nameParts[0] || '';
+        const lastName = nameParts.slice(1).join(' ') || '';
+        return {
+            UserFirstname: firstName,
+            UserLastname: lastName
+        }
+    }
     const handleSubmit = () => {
-        if (typeof onSubmit === 'function') { onSubmit(user); }
+        const { UserFirstname, UserLastname } = splitFullName(user.UserName || '')
+        const updatedUser = {
+            ...user,
+            UserFirstname,
+            UserLastname
+        }
+        if (typeof onSubmit === 'function') { onSubmit(updatedUser); }
         else { console.error('onSubmit is not a function:', onSubmit); }
     };
 
-    const submitLabel = ogUser ? 'Update Module' : 'Add Module';
+    const submitLabel = ogUser ? 'Update User' : 'Add User';
     const submitIcon = ogUser ? <Icons.Edit size={15}/> : <Icons.Add size={15}/>;
 
     const cohorts = years.map((year) => ({ value: year.YearID, label: year.YearName }));
@@ -49,10 +76,12 @@ const UserForm = ({ ogModule: ogUser, onSubmit, onCancel }) => {
         <Form onSubmit={handleSubmit} onCancel={onCancel} submitLabel={submitLabel} submitIcon={submitIcon}>
             {/* <Text style={styles.title}>Edit Module</Text> */}
             <Form.InputText label="User Code" value={user.UserCode} onChange={(value) => handleChange('UserCode', value)} />
-            <Form.InputText label="User Name" value={user.UserName} onChange={(value) => handleChange('UserName', value)} />
+            <Form.InputText label="User's Name" value={user.UserName} onChange={(value) => handleChange('UserName', value)} />
+            <Form.InputText label="User's Email" value={user.UserEmail} onChange={(value) => handleChange('UserEmail', value)} />
             <Form.InputSelect label="User Level" prompt="Select User Level" options={levels} value={user.UserLevel} onChange={(value) => handleChange('UserLevel', value)} />
             <Form.InputSelect label="User Cohort" prompt="Select User Cohort" options={cohorts} isLoading={isYearsLoading} value={user.UserYearID} onChange={(value) => handleChange('UserYearID', value)} />
             <Form.InputText label="User Image" value={user.UserImageURL} onChange={(value) => handleChange('UserImage', value)} />
+            <Form.InputSelect label="User Registered" prompt="Select Registered Value" options={register} value={user.UserRegistered} onChange={(value) => handleChange('UserRegistered', value)} />
         </Form>
     )
 }

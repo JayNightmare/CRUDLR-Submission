@@ -97,7 +97,14 @@ export const App = () => {
         <>
             <StatusBar backgroundColor="black" barStyle="light-content" />
             <NavigationContainer>
-                <Drawer.Navigator>
+                <Drawer.Navigator
+                    screenOptions={{
+                        headerStyle: { backgroundColor: "#d7c8f3" },
+                        headerTintColor: "black",
+                        headerTitleStyle: { fontWeight: "bold" },
+                        headerTitleAlign: "center",
+                    }}
+                >
                     <Drawer.Screen
                         name="ModuleStack"
                         component={ModuleStack}

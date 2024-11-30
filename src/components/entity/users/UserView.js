@@ -22,14 +22,14 @@ const UserView = ({ user, placeHolderText, onModify, onDelete }) => {
             <View style={styles.nameContainer}>
                 <Text style={styles.title}>
                     {user.UserFirstname} {user.UserLastname} {user.UserRegistered ? (
-                    <Icons.Tick size={20} color="green" style={styles.checkIcon} />
+                    <Icons.Tick size={20} style={styles.checkIcon} />
                 ) : null}
                 </Text>
             </View>
             <Text style={styles.subtitle}> {user.UserEmail}</Text>
             <Image style={styles.image} source={{ uri: user.UserImageURL }} />
-            <Text style={styles.detail}>Level: {user.UserLevel}</Text>
-            <Text style={styles.detail}>Cohort: {user.UserYearName}</Text>
+            {user.UserLevel ? <Text style={styles.detail}>Level: {user.UserLevel}</Text> : null}
+            {user.UserYearName ? <Text style={styles.detail}>Cohort: {user.UserYearName}</Text> : null}
             <Text style={styles.detail}>Type: {user.UserUsertypeName}</Text>
 
             <ButtonTray>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 10,
         textAlign: 'center',
-        color: 'black'
+        color: 'black',
     },
     subtitle: {
         fontSize: 16,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View,TextInput, StyleSheet, KeyboardAvoidingView } from 'react-native';
+import { Text, View, TextInput, StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { Button, ButtonTray } from './Button.js';
 import Icons from './Icons';
 import { Picker } from '@react-native-picker/picker';
@@ -7,9 +7,9 @@ import { Picker } from '@react-native-picker/picker';
 const Form = ({ children, onSubmit, onCancel, submitLabel, submitIcon }) => {
     return (
         <KeyboardAvoidingView style={styles.container}>
-            <View style={styles.inputContainer}>
+            <ScrollView style={styles.inputContainer}>
                 {children}
-            </View>
+            </ScrollView>
 
             {/* Buttons for Saving and Canceling */}
             <ButtonTray style={styles.buttonContainer}>
@@ -64,8 +64,8 @@ const styles = StyleSheet.create({
         gap: 20
     },
     inputContainer: {
-        gap: 10,
-    }, 
+        // gap: 10,
+    },
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     inputView: {
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
+        marginBottom: 10,
     },
     input: {
         marginVertical: 5,
