@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native';
 import Screen from '../../layout/Screen';
 import UserForm from '../../entity/users/UserForm';
 
-const ModuleAddScreen = ({ navigation, route }) => {
+const UserAddScreen = ({ navigation, route }) => {
     const { onAdd } = route.params;
 
     const handleCancel =  navigation.goBack;
@@ -16,4 +16,4 @@ const ModuleAddScreen = ({ navigation, route }) => {
     )
 };
 
-export default ModuleAddScreen;
+export default UserAddScreen;

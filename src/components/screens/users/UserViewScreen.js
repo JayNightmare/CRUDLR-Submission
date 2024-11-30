@@ -1,10 +1,10 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import Screen from '../../layout/Screen';
-import ModuleView from '../../entity/modules/ModuleView';
+import UserView from '../../entity/users/UserView';
 
-const ModuleViewScreen = ({ route, navigation }) => {
-    const { module, onDelete, onModify } = route.params;
+const UserViewScreen = ({ route, navigation }) => {
+    const { user, onDelete, onModify } = route.params;
 
     const placeHolderText = `
 Lorem ipsum odor amet, consectetuer adipiscing elit. Mollis euismod rutrum sodales maximus donec sit imperdiet. Dignissim eleifend suscipit odio, phasellus aenean felis. Eu phasellus class consequat sit curae mus mollis. Faucibus turpis vestibulum aenean nec nullam, facilisis pharetra est. Ad senectus quam sem et purus enim, suspendisse a condimentum.
@@ -18,20 +18,20 @@ Nostra eu magna sed massa class tortor a. Primis adipiscing interdum rutrum aliq
 Amet sit ridiculus sociosqu nibh, mollis et porttitor. Cursus quam eu mollis arcu vel. Netus tempus sagittis euismod vestibulum nunc sociosqu. Id netus id leo; fringilla quam rutrum. Vehicula eros sem; dapibus ridiculus dis curae fusce luctus. Faucibus lacus feugiat consectetur molestie adipiscing cursus libero commodo nostra. Ut rutrum inceptos est facilisis metus penatibus habitant fames. Eget sit adipiscing molestie turpis nam fames est.
     `;
 
-    const gotoModifyScreen = () => navigation.navigate('ModuleModifyScreen', { module, onModify });
+    const gotoModifyScreen = () => navigation.navigate('UserModifyScreen', { user, onModify });
 
     return (
         <Screen>
             <StatusBar barStyle="light-content" />
-            <ModuleView
-                key={module.ModuleCode}
-                module={module}
+            <UserView
+                key={user.UserCode}
+                user={user}
                 onDelete={onDelete}
                 onModify={gotoModifyScreen}
                 placeHolderText={placeHolderText}>
-            </ModuleView>
+            </UserView>
         </Screen>
     )
 };
 
-export default ModuleViewScreen;
+export default UserViewScreen;
