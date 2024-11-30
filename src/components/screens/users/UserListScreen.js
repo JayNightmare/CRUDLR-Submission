@@ -1,5 +1,5 @@
 import React from "react";
-import { StatusBar, LogBox, ActivityIndicator, View, Text, Alert } from "react-native";
+import { StatusBar, LogBox, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import API from "../../API/API.js";
 import Screen from "../../layout/Screen.js"; 
@@ -7,11 +7,10 @@ import UserList from "../../entity/users/UserList.js";
 import { ButtonTray, Button  } from "../../UI/Button.js";
 import Icons from "../../UI/Icons.js";
 import useLoad from "../../API/useLoad.js";
+import { usersEndpoint } from "../../../utils/shared/endpoints.js";
 
 const UserListScreen = () => {
     LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
-
-    const usersEndpoint = 'https://softwarehub.uk/unibase/api/users';
 
     const navigation = useNavigation();
 

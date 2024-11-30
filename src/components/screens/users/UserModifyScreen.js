@@ -4,14 +4,14 @@ import UserForm from '../../entity/users/UserForm';
 
 
 const UserModifyScreen = ({ route, navigation }) => {
-    const { module, onModify } = route.params;
+    const { user, onModify } = route.params;
 
     const handleCancel = navigation.goBack;
 
     return (
         <Screen>
             <StatusBar barStyle="light-content" />
-            <UserForm ogUser={module} onSubmit={onModify} onCancel={handleCancel} />
+            <UserForm ogUser={user} onSubmit={onModify} onCancel={handleCancel} />
         </Screen>
     );
 };

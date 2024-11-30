@@ -2,32 +2,10 @@ import React, { useState } from 'react';
 import Icons from '../../UI/Icons';
 import Form from '../../UI/Form';
 import useLoad from '../../API/useLoad.js';
-
-const defaultModule = {
-    ModuleID: null,
-    ModuleCode: null,
-    ModuleName: null,
-    ModuleLevel: null,
-    ModuleYearID: null,
-    ModuleLeaderID: null,
-    ModuleImage: null
-}
+import { defaultModule, levels } from '../../../utils/shared/defaults.js';
+import { yearsEndpoint, staffEndpoint } from '../../../utils/shared/endpoints.js';
 
 const ModuleForm = ({ ogModule, onSubmit, onCancel }) => {
-    defaultModule.ModuleID = Math.floor(100000 + Math.random() * 900000);
-    defaultModule.ModuleImageURL = 'https://via.placeholder.com/150x150';
-
-    const yearsEndpoint = 'https://softwarehub.uk/unibase/api/years';
-    const staffEndpoint = 'https://softwarehub.uk/unibase/api/users/staff';
-
-    const levels = [
-        { value: 3, label: '3 (Foundation)' },
-        { value: 4, label: '4 (First Year)' },
-        { value: 5, label: '5 (Second Year)' },
-        { value: 6, label: '6 (Third Year)' },
-        { value: 7, label: '7 (Masters)' },
-    ];
-
     const [module, setModule] = useState(ogModule || defaultModule);
     const [years, , isYearsLoading] = useLoad(yearsEndpoint);
     const [leaders, , isLeadersLoading] = useLoad(staffEndpoint);

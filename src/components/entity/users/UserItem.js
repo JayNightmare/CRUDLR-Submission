@@ -1,4 +1,12 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+import Selector from "../../UI/Selector";
+
+// Split K Number from UserEmail
+const splitKNumber = (userEmail) => {
+    const splitEmail = userEmail.split('@');
+    const kNumber = splitEmail[0];
+    return kNumber;
+};
 
 const UserItem = ({ user, onSelect }) => {
     return (
@@ -6,20 +14,19 @@ const UserItem = ({ user, onSelect }) => {
             {/* Main row container */}
             <View style={styles.row}>
                 {/* Pressable for selecting the user */}
-                <TouchableOpacity onPress={() => onSelect(user)} style={styles.textContainer}>
+                <Selector onPress={() => onSelect(user)} style={styles.textContainer}>
                     <Text style={styles.userNameText}>
-                        <Text style={{ fontWeight: "bold" }}>{user.UserID}</Text> | {user.UserFirstname} {user.UserLastname}
+                        <Text style={{ fontWeight: "bold" }}>{splitKNumber(user.UserEmail)}</Text> | {user.UserFirstname} {user.UserLastname}
                     </Text>
-                </TouchableOpacity>
+                </Selector>
             </View>
         </View>
-    ); 
+    );
 };
 
 const styles = StyleSheet.create({
     cardContainer: {
-        marginVertical: 5,
-        marginHorizontal: 10,
+        marginVertical: 10,
         marginBottom: 10, // Add a margin below the card
         paddingHorizontal: 10,
         paddingVertical: 12,
@@ -47,21 +54,26 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: 10, 
+        padding: 10,
     },
 
     textContainer: {
-        flex: 1, 
+        flex: 1,
     },
 
     userNameText: {
         fontSize: 18,
-        color: "#333", 
+        color: "#333",
     },
 
     removeButton: {
-        padding: 5, 
+        padding: 5,
     },
+
+    pressedItem: {
+        transform: [{ scale: 0.95 }],
+        opacity: 0.8,
+    }
 });
 
 export default UserItem;
