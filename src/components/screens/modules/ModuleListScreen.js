@@ -9,11 +9,11 @@ import { ButtonTray, Button  } from "../../UI/Button.js";
 import Icons from "../../UI/Icons.js";
 import useLoad from "../../API/useLoad.js";
 import { useStore } from "../../Store/UseStore.js";
+import { modulesEndpoint } from "../../../utils/shared/endpoints.js";
 
 const ModuleListScreen = () => {
     LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
 
-    const modulesEndpoint = 'https://softwarehub.uk/unibase/api/modules';
     const favouritesKey = "moduleFavourites";
     const loggedInUserKey = 'Jay';
 
@@ -81,16 +81,13 @@ const ModuleListScreen = () => {
     return (
         <Screen>
             <StatusBar barStyle="light-content" />
-            {loggedInUser && (
-                <Text>Welcome! {loggedInUser.UserFirstname}</Text>
-            )}
             <ButtonTray>
                 <Button styleButton={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderWidth: 0 }} icon={<Icons.Add size={20}/>} label="Add" onPress={gotoAddScreen} />
             </ButtonTray>
             {isLoading && (
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <Text>Loading Information...</Text>
-                    <ActivityIndicator size='64' color="#0000ff" />
+                    <ActivityIndicator size='64' color="#000" />
                 </View>
             )}
             <ModuleList modules={modules} onSelect={gotoViewScreen} isLoading={isLoading} onFavourite={handleFavourite} />

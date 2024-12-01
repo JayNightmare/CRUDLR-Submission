@@ -12,9 +12,37 @@ import { usersEndpoint } from "../../../utils/shared/endpoints.js";
 const UserListScreen = () => {
     LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
 
+    const favouritesKey = "userFavourites";
+    // const loggedInUserKey = 'Jay';
+
     const navigation = useNavigation();
 
-    const [ users, isLoading, , loadUsers ] = useLoad(usersEndpoint); 
+    const [ users, isLoading, setUsers, loadUsers ] = useLoad(usersEndpoint);
+    // const [loggedInUser] = useStore(loggedInUserKey, null);
+    const [favourites, saveFavourites] = useStore(favouritesKey, []);
+
+    const augmentUserWithFavourites = () => {
+        const modifyUsers = (user) => ({
+            ...user,
+            UserFavourite: favourites.includes(user.UserID)
+        });
+        const augmentedUsers = users.map(modifyUsers);
+        augmentedUsers.length > 0 && setUsers(augmentedUsers);
+    }
+
+    useEffect(() => {
+        augmentUserWithFavourites();
+    }, [isLoading]);
+
+    const handleFavourite = (user) => {
+        const isFavourite = !user.UserFavourite;
+        const updateUser = (item) => item.UserID === user.UserID ? { ...item, UserFavourite: isFavourite } : item;
+        const updatedUserList = users.map(updateUser);
+        setUsers(updatedUserList);
+
+        const updatedFavouritesList = updatedUserList.filter((item) => item.UserFavourite).map((item) => item.UserID);
+        saveFavourites(updatedFavouritesList);
+    }
     
     const onDelete = async (user) => {
         const deleteEndpoint = `${usersEndpoint}/${user.UserID}`;
@@ -55,7 +83,7 @@ const UserListScreen = () => {
             <ButtonTray>
                 <Button styleButton={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderWidth: 0 }} icon={<Icons.Add size={20}/>} label="Add" onPress={gotoAddScreen} />
             </ButtonTray>
-            <UserList users={users} onSelect={gotoViewScreen} isLoading={isLoading} />
+            <UserList users={users} onSelect={gotoViewScreen} isLoading={isLoading} onFavourite={handleFavourite} />
         </Screen>
     );
 };
