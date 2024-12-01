@@ -15,7 +15,7 @@ const ModuleViewScreen = ({ route, navigation }) => {
         `;
 
         const gotoModifyScreen = () => navigation.navigate('ModuleModifyScreen', { module, onModify });
-        
+
         return (
             <Screen>
                 <StatusBar barStyle="light-content" />
@@ -31,5 +31,5 @@ const ModuleViewScreen = ({ route, navigation }) => {
     } catch (e) {
         console.warn("You're Dumb", e);
     }
-}; 
+};
 export default ModuleViewScreen;
