@@ -15,12 +15,12 @@ const ModuleListScreen = () => {
     LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
 
     const favouritesKey = "moduleFavourites";
-    const loggedInUserKey = 'Jay';
+    // const loggedInUserKey = 'Jay';
 
     const navigation = useNavigation();
 
     const [ modules, isLoading, setModules, loadModules ] = useLoad(modulesEndpoint);
-    const [loggedInUser] = useStore(loggedInUserKey, null);
+    // const [loggedInUser] = useStore(loggedInUserKey, null);
     const [favourites, saveFavourites] = useStore(favouritesKey, []);
 
     const augmentModuleWithFavourites = () => {
