@@ -1,5 +1,6 @@
 import { StyleSheet, View, Text } from "react-native";
 import Selector from "../../UI/Selector";
+import Favourite from "../../UI/Favourite";
 
 // Split K Number from UserEmail
 const splitKNumber = (userEmail) => {
@@ -8,13 +9,15 @@ const splitKNumber = (userEmail) => {
     return kNumber;
 };
 
-const UserItem = ({ user, onSelect }) => {
+const UserItem = ({ user, onSelect, onFavourite }) => {
+    const handleSelect = () => onSelect(module);
+    const handleFavourite = () => onFavourite(module);
+
     return (
         <View style={styles.cardContainer}>
-            {/* Main row container */}
             <View style={styles.row}>
-                {/* Pressable for selecting the user */}
-                <Selector onPress={() => onSelect(user)} style={styles.textContainer}>
+                <Selector onPress={handleSelect} pressedStyle={styles.pressedItem} style={styles.textContainer}>
+                    <Favourite isFavourite={module.ModuleFavourite} onSelect={handleFavourite}></Favourite>
                     <Text style={styles.userNameText}>
                         <Text style={{ fontWeight: "bold" }}>{splitKNumber(user.UserEmail)}</Text> | {user.UserFirstname} {user.UserLastname}
                     </Text>
@@ -31,9 +34,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 12,
         
-        backgroundColor: "#e8e8e8", 
+        backgroundColor: "#e8e8e8",
 
-        elevation: 2, 
+        elevation: 2,
         shadowColor: "#000000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,
@@ -59,6 +62,9 @@ const styles = StyleSheet.create({
 
     textContainer: {
         flex: 1,
+        flexDirection: 'row',
+        gap: 10,
+        alignItems: 'center',
     },
 
     userNameText: {

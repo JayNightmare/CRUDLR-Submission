@@ -1,7 +1,6 @@
 import { StyleSheet, ScrollView, ActivityIndicator } from "react-native";
 import ModuleItem from "./ModuleItem.js";
 
-
 const ModuleList = ({ modules, onSelect, isLoading, onFavourite }) => {
     return (
         <ScrollView style={styles.container}>

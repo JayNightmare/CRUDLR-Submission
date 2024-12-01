@@ -3,8 +3,8 @@ import Selector from "../../UI/Selector";
 import Favourite from "../../UI/Favourite";
 
 const ModuleItem = ({ module, onSelect, onFavourite }) => {
-    const handleSelect = () => onSelect(module);;
-    const handleFavourite = () => onFavourite(module);;
+    const handleSelect = () => onSelect(module);
+    const handleFavourite = () => onFavourite(module);
 
     return (
         <View style={styles.cardContainer}>

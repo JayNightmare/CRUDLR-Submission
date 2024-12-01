@@ -1,12 +1,12 @@
 import { StyleSheet, ScrollView, ActivityIndicator } from "react-native";
 import UserItem from "./UserItem.js";
 
-const UserList = ({ users, onSelect, isLoading }) => {
+const UserList = ({ users, onSelect, isLoading, onFavourite }) => {
     return (
         <ScrollView style={styles.container}>
-            { isLoading ? <ActivityIndicator size="large" color="#000" style={{ paddingTop: 10 }} /> : null }
-            { users.filter((user) => user.UserRegistered).map((user) => {
-                return <UserItem key={user.UserID} user={user} onSelect={onSelect}/>
+            { isLoading ? <ActivityIndicator size="large" color="#000" /> : null }
+            { users.slice(0, 10).map((user) => {
+                return <UserItem key={user.UserID} user={user} onSelect={onSelect} onFavourite={onFavourite}/>
             })}
         </ScrollView>
     );

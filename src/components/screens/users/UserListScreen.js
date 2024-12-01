@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar, LogBox, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import API from "../../API/API.js";
@@ -7,6 +7,7 @@ import UserList from "../../entity/users/UserList.js";
 import { ButtonTray, Button  } from "../../UI/Button.js";
 import Icons from "../../UI/Icons.js";
 import useLoad from "../../API/useLoad.js";
+import { useStore } from "../../Store/UseStore.js";
 import { usersEndpoint } from "../../../utils/shared/endpoints.js";
 
 const UserListScreen = () => {
@@ -31,8 +32,10 @@ const UserListScreen = () => {
     }
 
     useEffect(() => {
-        augmentUserWithFavourites();
-    }, [isLoading]);
+        if (!isLoading) {
+            augmentUserWithFavourites();
+        }
+    }, [isLoading, favourites]);
 
     const handleFavourite = (user) => {
         const isFavourite = !user.UserFavourite;
