@@ -1,8 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { StatusBar } from "react-native";
-import {ModuleStack} from "./src/utils/stacks/moduleStack.js";
-import {UsersStack} from "./src/utils/stacks/userStack.js";
+import { ModuleStack } from "./src/utils/stacks/moduleStack.js";
+import { UsersStack } from "./src/utils/stacks/userStack.js";
 
 const Drawer = createDrawerNavigator();
 

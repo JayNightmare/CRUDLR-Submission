@@ -1,5 +1,6 @@
 import { StyleSheet, View, Text } from "react-native";
 import Selector from "../../UI/Selector";
+import Icons from "../../UI/Icons.js";
 
 const ModuleItem = ({ module, onSelect }) => {
     return (
@@ -8,6 +9,7 @@ const ModuleItem = ({ module, onSelect }) => {
             <View style={styles.row}>
                 {/* Pressable for selecting the module */}
                 <Selector onPress={() => onSelect(module)} pressedStyle={styles.pressedItem}  style={styles.textContainer}>
+                    <Text>{module.ModuleFavourite ? <Icons.FavouriteFilledIn /> : <Icons.FavouriteOutline />}</Text>
                     <Text style={styles.moduleNameText}>
                         <Text style={{ fontWeight: "bold" }}>{module.ModuleCode}</Text> | {module.ModuleName}
                     </Text>
@@ -52,6 +54,9 @@ const styles = StyleSheet.create({
 
     textContainer: {
         flex: 1,
+        flexDirection: 'row',
+        gap: 10,
+        alignItems: 'center',
     },
 
     moduleNameText: {

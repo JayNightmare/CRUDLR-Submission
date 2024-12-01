@@ -1,22 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar, LogBox, ActivityIndicator, View, Text, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+
 import API from "../../API/API.js";
 import Screen from "../../layout/Screen.js"; 
 import ModuleList from "../../entity/modules/ModuleList.js";
 import { ButtonTray, Button  } from "../../UI/Button.js";
 import Icons from "../../UI/Icons.js";
 import useLoad from "../../API/useLoad.js";
+import { useStore } from "../../Store/UseStore.js";
 
 const ModuleListScreen = () => {
     LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
 
     const modulesEndpoint = 'https://softwarehub.uk/unibase/api/modules';
-    // const usersEndpoint = 'https://softwarehub.uk/unibase/api/users';
+    const favouritesKey = "moduleFavourites";
+    const loggedInUserKey = 'Jay';
 
     const navigation = useNavigation();
 
-    const [ modules, isLoading, , loadModules ] = useLoad(modulesEndpoint); 
+    const [ modules, isLoading, setModules, loadModules ] = useLoad(modulesEndpoint);
+    const [loggedInUser] = useStore(loggedInUserKey, null);
+    const [favourites, saveFavourites] = useStore(favouritesKey, []);
+
+    const augmentModuleWithFavourites = () => {
+        const modifyModules = (module) => ({
+            ...module,
+            ModuleFavourite: favourites.includes(module.ModuleID)
+        });
+        const augmentedModules = modules.map(modifyModules);
+        augmentedModules.length > 0 && setModules(augmentedModules);
+    }
+
+    useEffect(() => {
+        augmentModuleWithFavourites();
+    }, [isLoading]);
+
+    const handleFavourites = (module) => {
+        const isFavourites = !module.ModuleFavourite;
+        const updateModule = (item) => item.ModuleID === module.ModuleID ? { ...item, ModuleFavourite: isFavourites } : item;
+        const updatedModules = modules.map(updateModule);
+        setModules(updatedModules);
+
+        const updatedFavouritesList = updatedFavouritesList.filter((item) => item.ModuleFavourite).map((item) => item.ModuleID);
+        saveFavourites(updatedFavouritesList);
+    }
     
     const onDelete = async (module) => {
         const deleteEndpoint = `${modulesEndpoint}/${module.ModuleID}`;
@@ -53,6 +81,10 @@ const ModuleListScreen = () => {
     return (
         <Screen>
             <StatusBar barStyle="light-content" />
+            <Text>{favourites.map((favourite => `${favourite},`))}</Text>
+            {loggedInUser && (
+                <Text>Welcome! {loggedInUser.UserFirstname}</Text>
+            )}
             <ButtonTray>
                 <Button styleButton={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderWidth: 0 }} icon={<Icons.Add size={20}/>} label="Add" onPress={gotoAddScreen} />
             </ButtonTray>
@@ -62,7 +94,7 @@ const ModuleListScreen = () => {
                     <ActivityIndicator size='64' color="#0000ff" />
                 </View>
             )}
-            <ModuleList modules={modules} onSelect={gotoViewScreen} isLoading={isLoading} />
+            <ModuleList modules={modules} onSelect={gotoViewScreen} isLoading={isLoading} onFavourite={handleFavourites} />
         </Screen>
     );
 };
