@@ -1,15 +1,16 @@
 import { StyleSheet, View, Text } from "react-native";
 import Selector from "../../UI/Selector";
-import Icons from "../../UI/Icons.js";
+import Favourite from "../../UI/Favourite";
 
-const ModuleItem = ({ module, onSelect }) => {
+const ModuleItem = ({ module, onSelect, onFavourite }) => {
+    const handleSelect = () => onSelect(module);;
+    const handleFavourite = () => onFavourite(module);;
+
     return (
         <View style={styles.cardContainer}>
-            {/* Main row container */}
             <View style={styles.row}>
-                {/* Pressable for selecting the module */}
-                <Selector onPress={() => onSelect(module)} pressedStyle={styles.pressedItem}  style={styles.textContainer}>
-                    <Text>{module.ModuleFavourite ? <Icons.FavouriteFilledIn /> : <Icons.FavouriteOutline />}</Text>
+                <Selector onPress={handleSelect} pressedStyle={styles.pressedItem}  style={styles.textContainer}>
+                    <Favourite isFavourite={module.ModuleFavourite} onSelect={handleFavourite}></Favourite>
                     <Text style={styles.moduleNameText}>
                         <Text style={{ fontWeight: "bold" }}>{module.ModuleCode}</Text> | {module.ModuleName}
                     </Text>

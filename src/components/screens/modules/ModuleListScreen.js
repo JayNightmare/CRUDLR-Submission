@@ -3,7 +3,7 @@ import { StatusBar, LogBox, ActivityIndicator, View, Text, Alert } from "react-n
 import { useNavigation } from "@react-navigation/native";
 
 import API from "../../API/API.js";
-import Screen from "../../layout/Screen.js"; 
+import Screen from "../../layout/Screen.js";
 import ModuleList from "../../entity/modules/ModuleList.js";
 import { ButtonTray, Button  } from "../../UI/Button.js";
 import Icons from "../../UI/Icons.js";
@@ -36,13 +36,13 @@ const ModuleListScreen = () => {
         augmentModuleWithFavourites();
     }, [isLoading]);
 
-    const handleFavourites = (module) => {
-        const isFavourites = !module.ModuleFavourite;
-        const updateModule = (item) => item.ModuleID === module.ModuleID ? { ...item, ModuleFavourite: isFavourites } : item;
-        const updatedModules = modules.map(updateModule);
-        setModules(updatedModules);
+    const handleFavourite = (module) => {
+        const isFavourite = !module.ModuleFavourite;
+        const updateModule = (item) => item.ModuleID === module.ModuleID ? { ...item, ModuleFavourite: isFavourite } : item;
+        const updatedModuleList = modules.map(updateModule);
+        setModules(updatedModuleList);
 
-        const updatedFavouritesList = updatedFavouritesList.filter((item) => item.ModuleFavourite).map((item) => item.ModuleID);
+        const updatedFavouritesList = updatedModuleList.filter((item) => item.ModuleFavourite).map((item) => item.ModuleID);
         saveFavourites(updatedFavouritesList);
     }
     
@@ -81,7 +81,6 @@ const ModuleListScreen = () => {
     return (
         <Screen>
             <StatusBar barStyle="light-content" />
-            <Text>{favourites.map((favourite => `${favourite},`))}</Text>
             {loggedInUser && (
                 <Text>Welcome! {loggedInUser.UserFirstname}</Text>
             )}
@@ -94,7 +93,7 @@ const ModuleListScreen = () => {
                     <ActivityIndicator size='64' color="#0000ff" />
                 </View>
             )}
-            <ModuleList modules={modules} onSelect={gotoViewScreen} isLoading={isLoading} onFavourite={handleFavourites} />
+            <ModuleList modules={modules} onSelect={gotoViewScreen} isLoading={isLoading} onFavourite={handleFavourite} />
         </Screen>
     );
 };
