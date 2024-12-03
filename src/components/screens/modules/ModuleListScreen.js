@@ -89,12 +89,6 @@ const ModuleListScreen = () => {
             <ButtonTray>
                 <Button styleButton={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderWidth: 0 }} icon={<Icons.Add size={20}/>} label="Add" onPress={gotoAddScreen} />
             </ButtonTray>
-            {isLoading && (
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>Loading Information...</Text>
-                    <ActivityIndicator size='64' color="#000" />
-                </View>
-            )}
             <ModuleList modules={modules} onSelect={gotoViewScreen} isLoading={isLoading} onFavourite={handleFavourite} />
         </Screen>
     );
