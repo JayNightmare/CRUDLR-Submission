@@ -1,4 +1,4 @@
-import { defaultImageURL } from '../formHelper.js';
+const defaultImageURL = 'https://via.placeholder.com/150x150';
 
 export const levels = [
     { value: 3, label: '3 (Foundation)' },

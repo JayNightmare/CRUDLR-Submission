@@ -7,8 +7,8 @@ import { yearsEndpoint, staffEndpoint } from '../../../utils/shared/endpoints.js
 
 const ModuleForm = ({ ogModule, onSubmit, onCancel }) => {
     const [module, setModule] = useState(ogModule || defaultModule);
-    const [years, , isYearsLoading] = useLoad(yearsEndpoint);
-    const [leaders, , isLeadersLoading] = useLoad(staffEndpoint);
+    const [years, isYearsLoading] = useLoad(yearsEndpoint);
+    const [leaders, isLeadersLoading] = useLoad(staffEndpoint);
 
     const handleChange = (field, value) => setModule({ ...module, [field]: value });
     const handleSubmit = () => {

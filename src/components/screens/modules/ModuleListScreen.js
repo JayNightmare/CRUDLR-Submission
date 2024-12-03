@@ -33,9 +33,7 @@ const ModuleListScreen = () => {
     }
 
     useEffect(() => {
-        if (!isLoading) {
-            augmentModuleWithFavourites();
-        }
+        if (!isLoading) augmentModuleWithFavourites();
     }, [isLoading, favourites]);
 
     const handleFavourite = (module) => {

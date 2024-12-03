@@ -39,23 +39,9 @@ const ModuleView = ({ module, placeHolderText, onModify, onDelete, onFavourite }
             <Text style={styles.detail}>Module Leader: {module.ModuleLeaderName}</Text>
 
             <ButtonTray>
-                <Favourite 
-                    isFavourite={isFavourite} 
-                    onSelect={handleFavourite} 
-                    style={styles.favourite}
-                />
-                <Button 
-                    onPress={onModify} 
-                    icon={<Icons.Edit size={20}/>} 
-                    label='Modify' 
-                />
-                <Button 
-                    onPress={requestDelete} 
-                    icon={<Icons.Delete />} 
-                    label='Delete' 
-                    styleLabel={{ color: 'red' }} 
-                    styleButton={{ borderColor: 'red' }} 
-                />
+                <Favourite isFavourite={isFavourite} onSelect={handleFavourite} style={styles.favourite} />
+                <Button onPress={onModify} icon={<Icons.Edit size={20}/>} label='Modify' />
+                <Button onPress={requestDelete} icon={<Icons.Delete />} label='Delete' styleLabel={{ color: 'red' }} styleButton={{ borderColor: 'red' }} />
             </ButtonTray>
 
             <Text style={styles.descrip}>{placeHolderText}</Text>

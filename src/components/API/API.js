@@ -8,8 +8,7 @@ API.delete = (endpoint) => callFetch(endpoint, 'DELETE');
 export default API;
 
 const callFetch = async (endpoint, method, dataObj = null) => {
-  // Build request object
-  let requestObj = { method: method }; // GET, POST, PUT or DELETE
+  let requestObj = { method: method };
   if (dataObj)
     requestObj = {
       ...requestObj,
@@ -17,7 +16,6 @@ const callFetch = async (endpoint, method, dataObj = null) => {
       body: JSON.stringify(dataObj),
     };
 
-  // Call the fetch and process the return
   try {
     let result = null;
     const response = await fetch(endpoint, requestObj);
