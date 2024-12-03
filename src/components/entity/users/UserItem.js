@@ -10,14 +10,14 @@ const splitKNumber = (userEmail) => {
 };
 
 const UserItem = ({ user, onSelect, onFavourite }) => {
-    const handleSelect = () => onSelect(module);
-    const handleFavourite = () => onFavourite(module);
+    const handleSelect = () => onSelect(user);
+    const handleFavourite = () => onFavourite(user);
 
     return (
         <View style={styles.cardContainer}>
             <View style={styles.row}>
                 <Selector onPress={handleSelect} pressedStyle={styles.pressedItem} style={styles.textContainer}>
-                    <Favourite isFavourite={module.ModuleFavourite} onSelect={handleFavourite}></Favourite>
+                    <Favourite isFavourite={user.UserFavourite} onSelect={handleFavourite}></Favourite>
                     <Text style={styles.userNameText}>
                         <Text style={{ fontWeight: "bold" }}>{splitKNumber(user.UserEmail)}</Text> | {user.UserFirstname} {user.UserLastname}
                     </Text>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#e8e8e8",
 
         elevation: 2,
-        shadowColor: "#000000",
+        shadowColor: "#000",
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,
         shadowRadius: 5,

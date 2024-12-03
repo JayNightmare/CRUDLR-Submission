@@ -27,10 +27,10 @@ const UserView = ({ user, placeHolderText, onModify, onDelete }) => {
                 </Text>
             </View>
             <Text style={styles.subtitle}> {user.UserEmail}</Text>
-            <Image style={styles.image} source={{ uri: user.UserImageURL }} />
+            {user.UserImageURL ? <Image style={styles.image} source={{ uri: user.UserImageURL }} /> : null}
             {user.UserLevel ? <Text style={styles.detail}>Level: {user.UserLevel}</Text> : null}
             {user.UserYearName ? <Text style={styles.detail}>Cohort: {user.UserYearName}</Text> : null}
-            <Text style={styles.detail}>Type: {user.UserUsertypeName}</Text>
+            {user.UserUsertypeName ? <Text style={styles.detail}>Type: {user.UserUsertypeName}</Text> : null}
 
             <ButtonTray>
                 <Button onPress={onModify} icon={<Icons.Edit size={20}/>} label='Modify' />

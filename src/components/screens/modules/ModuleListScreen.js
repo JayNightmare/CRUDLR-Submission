@@ -39,7 +39,7 @@ const ModuleListScreen = () => {
     }, [isLoading, favourites]);
 
     const handleFavourite = (module) => {
-        const isFavourite = module.ModuleFavourite;
+        const isFavourite = !module.ModuleFavourite;
         const updateModule = (item) => item.ModuleID === module.ModuleID ? { ...item, ModuleFavourite: isFavourite } : item;
         const updatedModuleList = modules.map(updateModule);
         setModules(updatedModuleList);
