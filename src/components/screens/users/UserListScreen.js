@@ -32,9 +32,7 @@ const UserListScreen = () => {
     }
 
     useEffect(() => {
-        if (!isLoading) {
-            augmentUserWithFavourites();
-        }
+        if (!isLoading) augmentUserWithFavourites();
     }, [isLoading, favourites]);
 
     const handleFavourite = (user) => {
