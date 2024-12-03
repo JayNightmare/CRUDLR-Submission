@@ -1,9 +1,21 @@
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, ScrollView, Image, Alert } from "react-native";
 import { Button, ButtonTray } from "../../UI/Button.js";
 import Icons from "../../UI/Icons.js";
+import Favourite from "../../UI/Favourite.js";
 
-const ModuleView = ({ module, placeHolderText, onModify, onDelete }) => {
+const ModuleView = ({ module, placeHolderText, onModify, onDelete, onFavourite }) => {
+    const [isFavourite, setIsFavourite] = useState(module.ModuleFavourite);
+
     const handleDelete = () => onDelete(module);
+    const handleFavourite = () => {
+        onFavourite(module);
+        setIsFavourite(!isFavourite);
+    };
+
+    useEffect(() => {
+        setIsFavourite(module.ModuleFavourite);
+    }, [module.ModuleFavourite]);
 
     const requestDelete = () => {
         Alert.alert(
@@ -20,18 +32,33 @@ const ModuleView = ({ module, placeHolderText, onModify, onDelete }) => {
     return (
         <ScrollView style={styles.container}>
             <Text style={styles.title}>{module.ModuleCode}</Text>
-            <Text style={styles.subtitle}> {module.ModuleName}</Text>
+            <Text style={styles.subtitle}>{module.ModuleName}</Text>
             <Image style={styles.image} source={{ uri: module.ModuleImageURL }} />
             <Text style={styles.detail}>Level: {module.ModuleLevel}</Text>
             <Text style={styles.detail}>Cohort: {module.ModuleYearName}</Text>
             <Text style={styles.detail}>Module Leader: {module.ModuleLeaderName}</Text>
 
             <ButtonTray>
-                <Button onPress={onModify} icon={<Icons.Edit size={20}/>} label='Modify' />
-                <Button onPress={requestDelete} icon={<Icons.Delete />} label='Delete' styleLabel={{ color: 'red' }} styleButton={{ borderColor: 'red' }} />
+                <Favourite 
+                    isFavourite={isFavourite} 
+                    onSelect={handleFavourite} 
+                    style={styles.favourite}
+                />
+                <Button 
+                    onPress={onModify} 
+                    icon={<Icons.Edit size={20}/>} 
+                    label='Modify' 
+                />
+                <Button 
+                    onPress={requestDelete} 
+                    icon={<Icons.Delete />} 
+                    label='Delete' 
+                    styleLabel={{ color: 'red' }} 
+                    styleButton={{ borderColor: 'red' }} 
+                />
             </ButtonTray>
 
-            <Text style={styles.descrip} >{placeHolderText}</Text>
+            <Text style={styles.descrip}>{placeHolderText}</Text>
         </ScrollView>
     )
 }
@@ -76,35 +103,13 @@ const styles = StyleSheet.create({
         lineHeight: 24,
         color: 'black'
     },
-    pressableView: {
-        marginVertical: 20
-    },
-    modifyButton: {
-        backgroundColor: 'white', // White background
+    favourite: {
+        backgroundColor: 'white',
         padding: 15,
         borderRadius: 8,
         marginBottom: 10,
-        borderWidth: 2,
-        borderColor: 'black', // Blue border
-    },
-    modifyButtonText: {
-        color: 'black', // Blue text
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: 18,
-    },
-    deleteButton: {
-        backgroundColor: 'white', // White background
-        padding: 15,
-        borderRadius: 8,
-        borderWidth: 2,
-        borderColor: 'red', // Red border
-    },
-    deleteButtonText: {
-        color: 'red', // Red text
-        fontWeight: 'bold',
-        textAlign: 'center',
-        fontSize: 18,
+        borderWidth: 1,
+        borderColor: 'grey',
     }
 });
 

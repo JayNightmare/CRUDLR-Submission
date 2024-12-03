@@ -50,7 +50,6 @@ const UserListScreen = () => {
     const onDelete = async (user) => {
         const deleteEndpoint = `${usersEndpoint}/${user.UserID}`;
         const result = await API.delete(deleteEndpoint, user);
-        console.log(result);
         if (result.isSuccess) {
             loadUsers(usersEndpoint);
             navigation.navigate('UserListScreen');
@@ -59,7 +58,6 @@ const UserListScreen = () => {
 
     const onAdd = async (user) => {
         const result = await API.post(usersEndpoint, user);
-        console.log(result);
         if (result.isSuccess) {
             loadUsers(usersEndpoint);
             navigation.goBack();
@@ -76,8 +74,7 @@ const UserListScreen = () => {
         } else { Alert.alert(result.message); }
     }
 
-    const gotoViewScreen = (user) => navigation.navigate('UserViewScreen', { user, onDelete, onModify });
-
+    const gotoViewScreen = (user) => navigation.navigate('UserViewScreen', { user, onDelete, onModify, onFavourite: handleFavourite });
     const gotoAddScreen = () => { navigation.navigate('UserAddScreen', { onAdd }); };
 
     return (

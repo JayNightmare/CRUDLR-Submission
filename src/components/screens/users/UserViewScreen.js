@@ -4,10 +4,7 @@ import Screen from '../../layout/Screen';
 import UserView from '../../entity/users/UserView';
 
 const UserViewScreen = ({ route, navigation }) => {
-    const { user, onDelete, onModify } = route.params;
-
-    console.log(user);
-
+    const { user, onDelete, onModify, onFavourite } = route.params;
     const placeHolderText = `
 Lorem ipsum odor amet, consectetuer adipiscing elit. Mollis euismod rutrum sodales maximus donec sit imperdiet. Dignissim eleifend suscipit odio, phasellus aenean felis. Eu phasellus class consequat sit curae mus mollis. Faucibus turpis vestibulum aenean nec nullam, facilisis pharetra est. Ad senectus quam sem et purus enim, suspendisse a condimentum.
 

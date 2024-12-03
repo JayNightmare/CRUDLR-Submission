@@ -1,11 +1,21 @@
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, ScrollView, Image, Alert, View } from "react-native";
 import { Button, ButtonTray } from "../../UI/Button.js";
 import Icons from "../../UI/Icons.js";
 import Favourite from "../../UI/Favourite.js";
 
 const UserView = ({ user, placeHolderText, onModify, onDelete, onFavourite }) => {
+    const [isFavourite, setIsFavourite] = useState(user.UserFavourite);
+
     const handleDelete = () => onDelete(user);
-    const handleFavourite = () => onFavourite(user);
+    const handleFavourite = () => {
+        onFavourite(user);
+        setIsFavourite(!isFavourite);
+    };
+
+    useEffect(() => {
+        setIsFavourite(user.UserFavourite);
+    }, [user.UserFavourite]);
 
     const requestDelete = () => {
         Alert.alert(
@@ -35,8 +45,7 @@ const UserView = ({ user, placeHolderText, onModify, onDelete, onFavourite }) =>
             {user.UserUsertypeName ? <Text style={styles.detail}>Type: {user.UserUsertypeName}</Text> : null}
 
             <ButtonTray>
-                {/* favourite button */}
-                <Favourite isFavourite={user.UserFavourite} onSelect={handleFavourite} style={styles.favourite}></Favourite>
+                <Favourite isFavourite={isFavourite} onSelect={handleFavourite} style={styles.favourite}></Favourite>
                 <Button onPress={onModify} icon={<Icons.Edit size={20}/>} label='Modify' />
                 <Button onPress={requestDelete} icon={<Icons.Delete />} label='Delete' styleLabel={{ color: 'red' }} styleButton={{ borderColor: 'red' }} />
             </ButtonTray>
