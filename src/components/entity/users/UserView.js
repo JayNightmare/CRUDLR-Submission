@@ -1,9 +1,11 @@
 import { StyleSheet, Text, ScrollView, Image, Alert, View } from "react-native";
 import { Button, ButtonTray } from "../../UI/Button.js";
 import Icons from "../../UI/Icons.js";
+import Favourite from "../../UI/Favourite.js";
 
-const UserView = ({ user, placeHolderText, onModify, onDelete }) => {
+const UserView = ({ user, placeHolderText, onModify, onDelete, onFavourite }) => {
     const handleDelete = () => onDelete(user);
+    const handleFavourite = () => onFavourite(user);
 
     const requestDelete = () => {
         Alert.alert(
@@ -33,6 +35,8 @@ const UserView = ({ user, placeHolderText, onModify, onDelete }) => {
             {user.UserUsertypeName ? <Text style={styles.detail}>Type: {user.UserUsertypeName}</Text> : null}
 
             <ButtonTray>
+                {/* favourite button */}
+                <Favourite isFavourite={user.UserFavourite} onSelect={handleFavourite} style={styles.favourite}></Favourite>
                 <Button onPress={onModify} icon={<Icons.Edit size={20}/>} label='Modify' />
                 <Button onPress={requestDelete} icon={<Icons.Delete />} label='Delete' styleLabel={{ color: 'red' }} styleButton={{ borderColor: 'red' }} />
             </ButtonTray>
@@ -89,29 +93,37 @@ const styles = StyleSheet.create({
     pressableView: {
         marginVertical: 20
     },
+    favourite: {
+        backgroundColor: 'white',
+        padding: 15,
+        borderRadius: 8,
+        marginBottom: 10,
+        borderWidth: 1,
+        borderColor: 'grey',
+    },
     modifyButton: {
-        backgroundColor: 'white', // White background
+        backgroundColor: 'white',
         padding: 15,
         borderRadius: 8,
         marginBottom: 10,
         borderWidth: 2,
-        borderColor: 'black', // Blue border
+        borderColor: 'black',
     },
     modifyButtonText: {
-        color: 'black', // Blue text
+        color: 'black',
         fontWeight: 'bold',
         textAlign: 'center',
         fontSize: 18,
     },
     deleteButton: {
-        backgroundColor: 'white', // White background
+        backgroundColor: 'white',
         padding: 15,
         borderRadius: 8,
         borderWidth: 2,
-        borderColor: 'red', // Red border
+        borderColor: 'red',
     },
     deleteButtonText: {
-        color: 'red', // Red text
+        color: 'red',
         fontWeight: 'bold',
         textAlign: 'center',
         fontSize: 18,

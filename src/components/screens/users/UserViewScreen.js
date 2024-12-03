@@ -32,6 +32,7 @@ Amet sit ridiculus sociosqu nibh, mollis et porttitor. Cursus quam eu mollis arc
                 onDelete={onDelete}
                 onModify={gotoModifyScreen}
                 placeHolderText={placeHolderText}
+                onFavourite={onFavourite}
                 >
             </UserView>
         </Screen>
