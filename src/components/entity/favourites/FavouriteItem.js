@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import Selector from "../../UI/Selector"; // Assuming Selector exists in your UI folder
-import Favourite from "../../UI/Favourite"; // Assuming Favourite exists in your UI folder
+import Selector from "../../UI/Selector";
+import Favourite from "../../UI/Favourite";
 
 const FavouriteItem = ({ item, type, onSelect, onFavourite }) => {
     const handleSelect = () => onSelect(item, type);
@@ -13,8 +13,8 @@ const FavouriteItem = ({ item, type, onSelect, onFavourite }) => {
                 <Selector onPress={handleSelect} pressedStyle={styles.pressedItem} style={styles.textContainer}>
                     <Favourite isFavourite={item.isFavourite} onSelect={handleFavourite}></Favourite>
                     <Text style={styles.itemNameText}>
-                        <Text style={{ fontWeight: "bold" }}>{type === "module" ? item.ModuleCode : item.UserFirstname}</Text>
-                        {type === "module" && ` | ${item.ModuleName}`}
+                        <Text style={{ fontWeight: "bold" }}>{type === "Modules" ? item.ModuleCode : item.UserFirstname}</Text>
+                        {type === "Modules" && ` | ${item.ModuleName}`}
                     </Text>
                 </Selector>
             </View>

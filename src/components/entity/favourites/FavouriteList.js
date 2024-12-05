@@ -8,7 +8,7 @@ const FavouriteList = ({ data, type, onItemPress, onItemFavourite }) => {
             {data && data.length > 0 ? (
                 <FlatList
                     data={data}
-                    keyExtractor={(item) => item.id || item.ModuleCode || item.UserFirstname} // Adjust as needed
+                    keyExtractor={(item) => item.id || item.ModuleName || item.UserFirstname} // Adjust as needed
                     renderItem={({ item }) => (
                         <FavouriteItem
                             item={item}
