@@ -23,13 +23,17 @@ const UserListScreen = () => {
     const [favourites, saveFavourites] = useStore(favouritesKey, []);
 
     const augmentUserWithFavourites = () => {
-        const modifyUsers = (user) => ({
+        const updatedUsers = users.map((user) => ({
             ...user,
-            UserFavourite: favourites.includes(user.UserID)
-        });
-        const augmentedUsers = users.map(modifyUsers);
-        augmentedUsers.length > 0 && setUsers(augmentedUsers);
-    }
+            UserFavourite: favourites.includes(user.UserID),
+        }));
+    
+        // Only update state if there are changes
+        if (JSON.stringify(users) !== JSON.stringify(updatedUsers)) {
+            setUsers(updatedUsers);
+        }
+    };
+    
 
     useEffect(() => {
         if (!isLoading) augmentUserWithFavourites();
@@ -74,7 +78,7 @@ const UserListScreen = () => {
 
     const gotoViewScreen = (user) => navigation.navigate('UserViewScreen', { user, onDelete, onModify, onFavourite: handleFavourite });
     const gotoAddScreen = () => { navigation.navigate('UserAddScreen', { onAdd }); };
-    const gotoFavourites = () => navigation.navigate('FavouriteListScreen', { modules, onFavourite: handleFavourite, favouritesKey });
+    const gotoFavourites = () => navigation.navigate('FavouriteListScreen', { users, onFavourite: handleFavourite, favouritesKey });
 
     return (
         <Screen>

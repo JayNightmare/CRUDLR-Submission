@@ -13,7 +13,7 @@ const FavouriteItem = ({ item, type, onSelect, onFavourite }) => {
                 <Selector onPress={handleSelect} pressedStyle={styles.pressedItem} style={styles.textContainer}>
                     <Favourite isFavourite={item.isFavourite} onSelect={handleFavourite}></Favourite>
                     <Text style={styles.itemNameText}>
-                        <Text style={{ fontWeight: "bold" }}>{type === "module" ? item.ModuleCode : item.UserName}</Text>
+                        <Text style={{ fontWeight: "bold" }}>{type === "module" ? item.ModuleCode : item.UserFirstname}</Text>
                         {type === "module" && ` | ${item.ModuleName}`}
                     </Text>
                 </Selector>

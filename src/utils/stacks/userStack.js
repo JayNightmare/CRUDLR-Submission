@@ -5,6 +5,7 @@ import UserListScreen from "../../../src/components/screens/users/UserListScreen
 import UserAddScreen from "../../../src/components/screens/users/UserAddScreen";
 import UserModifyScreen from "../../../src/components/screens/users/UserModifyScreen";
 import UserViewScreen from "../../../src/components/screens/users/UserViewScreen";
+import FavouriteListScreen from "../../components/screens/favourites/FavouriteListScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -44,6 +45,11 @@ export const UsersStack = () => {
                     name="UserViewScreen"
                     component={UserViewScreen}
                     options={{ title: "View User" }}
+                />
+                <Stack.Screen
+                    name="FavouriteListScreen"
+                    component={FavouriteListScreen}
+                    options={{ title: "Favourites List" }}
                 />
             </Stack.Navigator>
         </>

@@ -18,12 +18,10 @@ const FavouriteListScreen = ({ navigation }) => {
         const fetchFavouriteModules = async () => {
             const fullModules = await API.get(modulesEndpoint);
 
-            console.log("Full Modules Response:", fullModules);
-            console.log("Favourited Modules:", favouriteModules);
+            // console.log("Full Modules Response:", fullModules);
+            // console.log("Favourited Modules:", favouriteModules);
 
-            const filteredModules = fullModules.filter((module) =>
-                favouriteModules.includes(module.ModuleID)
-            );
+            const filteredModules = fullModules.filter(module => favouriteModules.includes(module.ModuleID));
             console.log("Filtered Modules:", filteredModules);
             return setModules(filteredModules);
         };

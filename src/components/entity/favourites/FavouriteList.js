@@ -1,22 +1,27 @@
 import React from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import FavouriteItem from "./FavouriteItem";
 
 const FavouriteList = ({ data, type, onItemPress, onItemFavourite }) => {
     return (
-        <FlatList
-            style={styles.container}
-            data={data}
-            keyExtractor={(item) => item.id || item.ModuleCode || item.UserName} // Adjust as needed
-            renderItem={({ item }) => (
-                <FavouriteItem
-                    item={item}
-                    type={type}
-                    onSelect={onItemPress}
-                    onFavourite={onItemFavourite}
+        <View style={styles.container}>
+            {data && data.length > 0 ? (
+                <FlatList
+                    data={data}
+                    keyExtractor={(item) => item.id || item.ModuleCode || item.UserFirstname} // Adjust as needed
+                    renderItem={({ item }) => (
+                        <FavouriteItem
+                            item={item}
+                            type={type}
+                            onSelect={onItemPress}
+                            onFavourite={onItemFavourite}
+                        />
+                    )}
                 />
+            ) : (
+                <Text style={styles.noText}>No {type === "Modules" ? "modules" : "users"} are favourited!</Text>
             )}
-        />
+        </View>
     );
 };
 
@@ -35,6 +40,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 2,
+    },
+    noText: {
+        fontSize: 16,
+        color: "#666",
+        textAlign: "center",
+        padding: 20,
     }
 })
 
