@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StatusBar, LogBox, ActivityIndicator, View, Text, Alert } from "react-native";
+import { StatusBar, LogBox, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import API from "../../API/API.js";
@@ -75,19 +75,23 @@ const ModuleListScreen = () => {
         } else { Alert.alert(result.message); }
     }
 
-    const gotoViewScreen = (module) => navigation.navigate('ModuleViewScreen', { 
-        module, 
-        onDelete, 
+    const gotoViewScreen = (module) => navigation.navigate('ModuleViewScreen', {
+        module,
+        onDelete,
         onModify,
-        onFavourite: handleFavourite 
+        onFavourite: handleFavourite
     });
+
     const gotoAddScreen = () => { navigation.navigate('ModuleAddScreen', { onAdd }); };
+
+    const gotoFavourites = () => navigation.navigate('FavouriteListScreen', { modules, onFavourite: handleFavourite, favouritesKey });
 
     return (
         <Screen>
             <StatusBar barStyle="light-content" />
             <ButtonTray>
                 <Button styleButton={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderWidth: 0 }} icon={<Icons.Add size={20}/>} label="Add" onPress={gotoAddScreen} />
+                <Button styleButton={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderWidth: 0 }} icon={<Icons.FavouriteOutline size={20}/>} label="Favourites" onPress={gotoFavourites} />
             </ButtonTray>
             <ModuleList modules={modules} onSelect={gotoViewScreen} isLoading={isLoading} onFavourite={handleFavourite} />
         </Screen>

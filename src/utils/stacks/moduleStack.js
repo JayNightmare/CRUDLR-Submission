@@ -5,6 +5,7 @@ import ModuleListScreen from "../../../src/components/screens/modules/ModuleList
 import ModuleAddScreen from "../../../src/components/screens/modules/ModuleAddScreen";
 import ModuleModifyScreen from "../../../src/components/screens/modules/ModuleModifyScreen";
 import ModuleViewScreen from "../../../src/components/screens/modules/ModuleViewScreen";
+import FavouriteListScreen from "../../components/screens/favourites/FavouriteListScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -40,6 +41,11 @@ export const ModuleStack = () => {
                     name="ModuleViewScreen"
                     component={ModuleViewScreen}
                     options={{ title: "View Module" }}
+                />
+                <Stack.Screen
+                    name="FavouriteListScreen"
+                    component={FavouriteListScreen}
+                    options={{ title: "Favourites List" }}
                 />
             </Stack.Navigator>
         </>
