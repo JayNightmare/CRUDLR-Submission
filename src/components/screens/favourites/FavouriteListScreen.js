@@ -1,47 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { useStore } from "../../Store/UseStore";
+import useLoad from "../../API/useLoad.js";
 import Screen from "../../layout/Screen";
 import { ButtonTray, Button } from "../../UI/Button";
 import FavouriteList from "../../entity/favourites/FavouriteList";
-import API from "../../API/API.js";
 import { modulesEndpoint, usersEndpoint } from "../../../utils/shared/endpoints.js";
 
 const FavouriteListScreen = ({ navigation }) => {
     const [selectedTab, setSelectedTab] = useState("Modules");
     const [favouriteModules] = useStore("moduleFavourites", []);
     const [favouriteUsers] = useStore("userFavourites", []);
-    const [modules, setModules] = useState([]);
-    const [users, setUsers] = useState([]);
+    const [filteredModules, setFilteredModules] = useState([]);
+    const [filteredUsers, setFilteredUsers] = useState([]);
+    const [modules] = useLoad(modulesEndpoint);
+    const [users] = useLoad(usersEndpoint);
 
     useEffect(() => {
-        const fetchFavouriteModules = async () => {
-            const fullModules = await API.get(modulesEndpoint);
+        const fetchFavourites = () => {
+            // Filter modules
+            if (modules.length > 0) {
+                const filtered = modules.filter((module) =>
+                    favouriteModules.includes(module.ModuleID)
+                );
+                setFilteredModules(filtered);
+                console.log(`Filtered modules: ${filtered.length}`);
+            }
 
-            // console.log("Full Modules Response:", fullModules);
-            // console.log("Favourited Modules:", favouriteModules);
-
-            const filteredModules = fullModules.filter(module => favouriteModules.includes(module.ModuleID));
-            console.log("Filtered Modules:", filteredModules);
-            return setModules(filteredModules);
+            // Filter users
+            if (users.length > 0) {
+                const filtered = users.filter((user) =>
+                    favouriteUsers.includes(user.UserID)
+                );
+                setFilteredUsers(filtered);
+                console.log(`Filtered users: ${filtered.length}`);
+            }
         };
 
-        const fetchFavouriteUsers = async () => {
-            const fullUsers = await API.get(usersEndpoint);
-            const filteredUsers = fullUsers.filter((user) =>
-                favouriteUsers.includes(user.UserID)
-            );
-            return setUsers(filteredUsers);
-        };
-
-        if (favouriteModules.length > 0) fetchFavouriteModules();
-        if (favouriteUsers.length > 0) fetchFavouriteUsers();
-    }, [favouriteModules, favouriteUsers]);
+        fetchFavourites();
+    }, [favouriteModules, favouriteUsers, modules, users]);
 
     const handleTabChange = (tab) => setSelectedTab(tab);
 
     const handleItemPress = (item, type) => {
-        if (type === "module") {
+        if (type === "Modules") {
             navigation.navigate("ModuleViewScreen", { module: item });
         } else {
             navigation.navigate("UserViewScreen", { user: item });
@@ -63,7 +65,7 @@ const FavouriteListScreen = ({ navigation }) => {
                 />
             </ButtonTray>
             <FavouriteList
-                data={selectedTab === "Modules" ? modules : users}
+                data={selectedTab === "Modules" ? filteredModules : filteredUsers}
                 type={selectedTab}
                 onItemPress={handleItemPress}
             />

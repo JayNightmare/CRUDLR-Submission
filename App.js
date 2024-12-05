@@ -18,19 +18,19 @@ export const App = () => {
                         headerTitleStyle: { fontWeight: "bold" },
                         headerTitleAlign: "center",
                         drawerStyle: {
-                            backgroundColor: "#f2f2f2", // Set the background color of the drawer
-                            width: 250, // Set the width of the drawer
+                            backgroundColor: "#f2f2f2",
+                            width: 250,
                         },
                         drawerLabelStyle: {
-                            fontSize: 16, // Change font size of the labels
-                            fontWeight: "bold", // Make labels bold
+                            fontSize: 16,
+                            fontWeight: "bold",
                         },
-                        drawerActiveBackgroundColor: "#e1d8f7", // Background color for active item
-                        drawerActiveTintColor: "#000", // Text color for active item
-                        drawerInactiveTintColor: "#7d7d7d", // Text color for inactive items
+                        drawerActiveBackgroundColor: "#e1d8f7",
+                        drawerActiveTintColor: "#000",
+                        drawerInactiveTintColor: "#7d7d7d",
                         drawerItemStyle: {
-                            borderRadius: 10, // Rounded corners for items
-                            marginVertical: 5, // Spacing between items
+                            borderRadius: 10,
+                            marginVertical: 5,
                         },
                     }}
                 >
