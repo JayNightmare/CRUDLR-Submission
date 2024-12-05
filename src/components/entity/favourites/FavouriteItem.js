@@ -7,13 +7,17 @@ const FavouriteItem = ({ item, type, onSelect, onFavourite }) => {
     const handleSelect = () => onSelect(item, type);
     const handleFavourite = () => onFavourite(item, type);
 
+    const isFavourite = true;
+
     return (
         <View style={styles.cardContainer}>
             <View style={styles.row}>
                 <Selector onPress={handleSelect} pressedStyle={styles.pressedItem} style={styles.textContainer}>
-                    <Favourite isFavourite={item.isFavourite} onSelect={handleFavourite}></Favourite>
+                    <Favourite isFavourite={isFavourite} onSelect={handleFavourite} />
                     <Text style={styles.itemNameText}>
-                        <Text style={{ fontWeight: "bold" }}>{type === "Modules" ? item.ModuleCode : item.UserFirstname}</Text>
+                        <Text style={{ fontWeight: "bold" }}>
+                            {type === "Modules" ? item.ModuleCode : item.UserFirstname}
+                        </Text>
                         {type === "Modules" && ` | ${item.ModuleName}`}
                     </Text>
                 </Selector>

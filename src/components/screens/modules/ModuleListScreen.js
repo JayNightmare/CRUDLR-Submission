@@ -23,28 +23,30 @@ const ModuleListScreen = () => {
     // const [loggedInUser] = useStore(loggedInUserKey, null);
     const [favourites, saveFavourites] = useStore(favouritesKey, []);
 
-    const augmentModuleWithFavourites = () => {
-        const modifyModules = (module) => ({
-            ...module,
-            ModuleFavourite: favourites.includes(module.ModuleID)
-        });
-        const augmentedModules = modules.map(modifyModules);
-        augmentedModules.length > 0 && setModules(augmentedModules);
-    }
-
     useEffect(() => {
-        if (!isLoading) augmentModuleWithFavourites();
+        if (!isLoading) {
+            const augmentedModules = modules.map(module => ({
+                ...module,
+                ModuleFavourite: favourites.includes(module.ModuleID)
+            }));
+            setModules(augmentedModules);
+        }
     }, [isLoading, favourites]);
 
     const handleFavourite = (module) => {
         const isFavourite = !module.ModuleFavourite;
-        const updateModule = (item) => item.ModuleID === module.ModuleID ? { ...item, ModuleFavourite: isFavourite } : item;
-        const updatedModuleList = modules.map(updateModule);
-        setModules(updatedModuleList);
+        const updatedModules = modules.map(item => 
+            item.ModuleID === module.ModuleID 
+                ? { ...item, ModuleFavourite: isFavourite }
+                : item
+        );
+        setModules(updatedModules);
 
-        const updatedFavouritesList = updatedModuleList.filter((item) => item.ModuleFavourite).map((item) => item.ModuleID);
-        saveFavourites(updatedFavouritesList);
-    }
+        const newFavourites = isFavourite 
+            ? [...favourites, module.ModuleID]
+            : favourites.filter(id => id !== module.ModuleID);
+        saveFavourites(newFavourites);
+    };
     
     const onDelete = async (module) => {
         const deleteEndpoint = `${modulesEndpoint}/${module.ModuleID}`;

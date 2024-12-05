@@ -9,8 +9,8 @@ import { modulesEndpoint, usersEndpoint } from "../../../utils/shared/endpoints.
 
 const FavouriteListScreen = ({ navigation }) => {
     const [selectedTab, setSelectedTab] = useState("Modules");
-    const [favouriteModules] = useStore("moduleFavourites", []);
-    const [favouriteUsers] = useStore("userFavourites", []);
+    const [favouriteModules, saveFavouriteModules] = useStore("moduleFavourites", []);
+    const [favouriteUsers, saveFavouriteUsers] = useStore("userFavourites", []);
     const [filteredModules, setFilteredModules] = useState([]);
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [modules] = useLoad(modulesEndpoint);
@@ -44,9 +44,35 @@ const FavouriteListScreen = ({ navigation }) => {
 
     const handleItemPress = (item, type) => {
         if (type === "Modules") {
-            navigation.navigate("ModuleViewScreen", { module: item });
+            navigation.navigate("ModuleViewScreen", { 
+                module: item, 
+                onFavourite: (module) => handleItemFavourite(module, "Modules") 
+            });
         } else {
-            navigation.navigate("UserViewScreen", { user: item });
+            navigation.navigate("UserViewScreen", { 
+                user: item,
+                onFavourite: (user) => handleItemFavourite(user, "Users")
+            });
+        }
+    };
+
+    const handleItemFavourite = (item, type) => {
+        if (type === "Modules") {
+            // Remove from favorites
+            const newFavourites = favouriteModules.filter(id => id !== item.ModuleID);
+            saveFavouriteModules(newFavourites);
+            
+            // Update filtered modules
+            const updatedModules = filteredModules.filter(module => module.ModuleID !== item.ModuleID);
+            setFilteredModules(updatedModules);
+        } else {
+            // Remove from favorites
+            const newFavourites = favouriteUsers.filter(id => id !== item.UserID);
+            saveFavouriteUsers(newFavourites);
+            
+            // Update filtered users
+            const updatedUsers = filteredUsers.filter(user => user.UserID !== item.UserID);
+            setFilteredUsers(updatedUsers);
         }
     };
 
@@ -68,6 +94,7 @@ const FavouriteListScreen = ({ navigation }) => {
                 data={selectedTab === "Modules" ? filteredModules : filteredUsers}
                 type={selectedTab}
                 onItemPress={handleItemPress}
+                onItemFavourite={handleItemFavourite}
             />
         </Screen>
     );
