@@ -74,12 +74,14 @@ const UserListScreen = () => {
 
     const gotoViewScreen = (user) => navigation.navigate('UserViewScreen', { user, onDelete, onModify, onFavourite: handleFavourite });
     const gotoAddScreen = () => { navigation.navigate('UserAddScreen', { onAdd }); };
+    const gotoFavourites = () => navigation.navigate('FavouriteListScreen', { modules, onFavourite: handleFavourite, favouritesKey });
 
     return (
         <Screen>
             <StatusBar barStyle="light-content" />
             <ButtonTray>
                 <Button styleButton={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderWidth: 0 }} icon={<Icons.Add size={20}/>} label="Add" onPress={gotoAddScreen} />
+                <Button styleButton={{ borderBottomLeftRadius: 0, borderBottomRightRadius: 0, borderBottomWidth: 1, borderWidth: 0 }} icon={<Icons.FavouriteOutline size={20}/>} label="Favourites" onPress={gotoFavourites} />
             </ButtonTray>
             <UserList users={users} onSelect={gotoViewScreen} isLoading={isLoading} onFavourite={handleFavourite} />
         </Screen>

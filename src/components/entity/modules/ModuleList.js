@@ -5,7 +5,9 @@ const ModuleList = ({ modules, onSelect, isLoading, onFavourite }) => {
     return (
         <ScrollView style={styles.container}>
             { isLoading ? <ActivityIndicator size="large" color="#000" /> : null }
-            { modules.map((module) => {
+            { modules.filter((module, index, self) =>
+                index === self.findIndex((t) => t.ModuleCode === module.ModuleCode)
+            ).map((module) => {
                 return <ModuleItem key={module.ModuleCode} module={module} onSelect={onSelect} onFavourite={onFavourite}/>
             })}
         </ScrollView>

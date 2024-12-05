@@ -75,15 +75,8 @@ const ModuleListScreen = () => {
         } else { Alert.alert(result.message); }
     }
 
-    const gotoViewScreen = (module) => navigation.navigate('ModuleViewScreen', {
-        module,
-        onDelete,
-        onModify,
-        onFavourite: handleFavourite
-    });
-
+    const gotoViewScreen = (module) => navigation.navigate('ModuleViewScreen', { module, onDelete, onModify, onFavourite: handleFavourite });
     const gotoAddScreen = () => { navigation.navigate('ModuleAddScreen', { onAdd }); };
-
     const gotoFavourites = () => navigation.navigate('FavouriteListScreen', { modules, onFavourite: handleFavourite, favouritesKey });
 
     return (
