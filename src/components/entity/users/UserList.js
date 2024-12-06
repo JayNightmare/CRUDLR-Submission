@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     contentContainer: {
-        flexDirection: 'column-reverse',
+        flexDirection: 'column',
     }
 });
 

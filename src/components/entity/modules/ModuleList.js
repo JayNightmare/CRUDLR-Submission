@@ -7,7 +7,7 @@ const ModuleList = ({ modules, onSelect, isLoading, onFavourite }) => {
             { isLoading ? <ActivityIndicator size="large" color="#000" /> : null }
             { modules.filter((module, index, self) =>
                 index === self.findIndex((t) => t.ModuleCode === module.ModuleCode)
-            ).map((module) => {
+            ).reverse().map((module) => {
                 return <ModuleItem key={module.ModuleCode} module={module} onSelect={onSelect} onFavourite={onFavourite}/>
             })}
         </ScrollView>
