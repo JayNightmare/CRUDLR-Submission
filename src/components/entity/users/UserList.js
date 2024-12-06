@@ -1,33 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { StyleSheet, ScrollView, ActivityIndicator } from "react-native";
 import UserItem from "./UserItem.js";
-import { useStore } from "../../Store/UseStore.js";
 
 const UserList = ({ users, onSelect, isLoading, onFavourite }) => {
-    const [favourites] = useStore("userFavourites", []);
-    const [augmentedUsers, setAugmentedUsers] = useState(users);
-
-    useEffect(() => {
-        const updatedUsers = users.map(user => ({
-            ...user,
-            UserFavourite: favourites.includes(user.UserID)
-        }));
-        setAugmentedUsers(updatedUsers);
-    }, [users, favourites]);
-
     return (
-        <ScrollView 
-            style={styles.container}
-            contentContainerStyle={styles.contentContainer}
-        >
+        <ScrollView style={styles.container}>
             { isLoading ? <ActivityIndicator size="large" color="#000" /> : null }
-            { [...augmentedUsers].reverse().map((user) => {
-                return <UserItem 
-                    key={user.UserID} 
-                    user={user} 
-                    onSelect={onSelect} 
-                    onFavourite={onFavourite}
-                />
+            { users.reverse().map((user) => {
+                return <UserItem key={user.UserID} user={user} onSelect={onSelect} onFavourite={onFavourite}/>
             })}
         </ScrollView>
     );

@@ -7,6 +7,13 @@ const FavouriteItem = ({ item, type, onSelect, onFavourite }) => {
     const handleSelect = () => onSelect(item, type);
     const handleFavourite = () => onFavourite(item, type);
 
+    // Split K Number from UserEmail
+    const splitKNumber = (userEmail) => {
+        const splitEmail = userEmail.split('@');
+        const kNumber = splitEmail[0];
+        return kNumber;
+    };
+
     const isFavourite = true;
 
     return (
@@ -16,10 +23,11 @@ const FavouriteItem = ({ item, type, onSelect, onFavourite }) => {
                     <Favourite isFavourite={isFavourite} onSelect={handleFavourite} />
                     <Text style={styles.itemNameText}>
                         <Text style={{ fontWeight: "bold" }}>
-                            {type === "Modules" ? item.ModuleCode : item.UserFirstname}
+                            {type === "Modules" ? item.ModuleCode : splitKNumber(item.UserEmail)}
                         </Text>
                         {type === "Modules" && ` | ${item.ModuleName}`}
-                    </Text>
+                        {type === "Users" && <Text> | {item.UserFirstname} {item.UserLastname}</Text>}
+                    </Text> 
                 </Selector>
             </View>
         </View>

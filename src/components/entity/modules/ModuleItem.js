@@ -23,7 +23,7 @@ const ModuleItem = ({ module, onSelect, onFavourite }) => {
 const styles = StyleSheet.create({
     cardContainer: {
         marginVertical: 10,
-        marginBottom: 10, // Add a margin below the card
+        marginBottom: 10,
         paddingHorizontal: 10,
         paddingVertical: 12,
         
@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
         shadowRadius: 5,
 
         borderRadius: 8,
-        borderColor: "#cccc", // Add a bottom border
+        borderColor: "#cccc",
         borderWidth: 1,
     },
 
     row: {
-        flexDirection: "row", // Align items horizontally
-        justifyContent: "space-between", // Space between the text and delete button
-        alignItems: "center", // Center items vertically
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
     },
 
     overView: {

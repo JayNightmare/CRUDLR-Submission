@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { StatusBar, LogBox, Alert } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import API from "../../API/API.js";
 import Screen from "../../layout/Screen.js";
@@ -22,6 +22,12 @@ const ModuleListScreen = () => {
     const [ modules, isLoading, setModules, loadModules ] = useLoad(modulesEndpoint);
     // const [loggedInUser] = useStore(loggedInUserKey, null);
     const [favourites, saveFavourites] = useStore(favouritesKey, []);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            loadModules(modulesEndpoint);
+        }, [])
+    );
 
     useEffect(() => {
         if (!isLoading) {

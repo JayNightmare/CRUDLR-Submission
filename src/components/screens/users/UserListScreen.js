@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { StatusBar, LogBox, Alert } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import API from "../../API/API.js";
 import Screen from "../../layout/Screen.js"; 
 import UserList from "../../entity/users/UserList.js";
@@ -21,6 +21,13 @@ const UserListScreen = () => {
     const [ users, isLoading, setUsers, loadUsers ] = useLoad(usersEndpoint);
     // const [loggedInUser] = useStore(loggedInUserKey, null);
     const [favourites, saveFavourites] = useStore(favouritesKey, []);
+
+    // Add this effect to refresh data when screen is focused
+    useFocusEffect(
+        React.useCallback(() => {
+            loadUsers(usersEndpoint);
+        }, [])
+    );
 
     const augmentUserWithFavourites = () => {
         const updatedUsers = users.map((user) => ({
